@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.Rprofile
+*.Rproj
+mongo/
+renv/
+report_files/
+ignore/
+renv*
+renv.lock
