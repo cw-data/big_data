@@ -28,3 +28,24 @@ This repository implements a fully containerized distributed data processing pip
 ```bash
 git clone [https://github.com/cw-data/big_data.git](https://github.com/cw-data/big_data.git)
 cd big_data
+```
+
+```bash
+docker-compose up -d --build
+```
+
+```bash
+docker-compose exec mongo1 /usr/bin/mongo --eval "if (rs.status()['ok'] == 0) { rsconf = { _id : 'rs0', members: [ { _id : 0, host : 'mongo1:27017', priority: 1.0 }, { _id : 1, host : 'mongo2:27017', priority: 0.5 }, { _id : 2, host : 'mongo3:27017', priority: 0.5 } ] }; rs.initiate(rsconf); } rs.conf();"
+```
+
+```bash
+docker-compose exec mongo1 apt-get update && apt-get install -y wget
+docker-compose exec mongo1 wget [https://github.com/RWaltersMA/mongo-spark-jupyter/raw/master/Source.bson](https://github.com/RWaltersMA/mongo-spark-jupyter/raw/master/Source.bson)
+docker-compose exec mongo1 /usr/bin/mongorestore Source.bson -h rs0/mongo1:27017,mongo2:27018,mongo3:27019 -d Stocks -c Source --drop
+```
+
+Author
+Charles Wainright
+
+[GitHub Profile](https://github.com/cw-data)
+
