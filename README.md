@@ -29,7 +29,7 @@ This repository implements a fully containerized distributed data processing pip
 git clone [https://github.com/cw-data/big_data.git](https://github.com/cw-data/big_data.git)
 cd big_data
 ```
-
+### 2. Docker containers and Mongo
 ```bash
 docker-compose up -d --build
 ```
